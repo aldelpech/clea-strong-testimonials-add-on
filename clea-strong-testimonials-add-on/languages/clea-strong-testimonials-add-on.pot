@@ -1,0 +1,174 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Clea Plugin Boiler Plate\n"
+"POT-Creation-Date: 2016-09-11 12:56+0200\n"
+"PO-Revision-Date: 2016-09-11 12:55+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.9\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: clea-plugin-boilerplate.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:27
+msgid "Section One àçéèîùö"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:33
+msgid "Section Two"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:55
+msgid "Field One"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:60
+msgid "help 1-1"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:65
+msgid "Field Two : textarea"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:70
+msgid "help 1-2"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:75
+msgid "Field three : select"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:80
+msgid "help 1-3"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:83
+#: admin/clea-plugin-boilerplate-admin-settings.php:141
+msgid "Choix 1"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:84
+#: admin/clea-plugin-boilerplate-admin-settings.php:142
+msgid "Choix 2"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:85
+#: admin/clea-plugin-boilerplate-admin-settings.php:143
+msgid "Choix 3"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:90
+msgid "Field four : checkbox"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:95
+msgid "help 1-4"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:100
+msgid "Field 5 : date picker"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:105
+msgid "jj/mm/aaaa"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:110
+msgid "Field 6 : email"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:115
+msgid "aaaa@rrrr.ddd"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:120
+msgid "Field 7 : url"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:125
+msgid "http:// ou https://"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:133
+msgid "Field One : radio"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:138
+msgid "help 2-1"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:148
+msgid "Field Two : wysiwig"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:153
+msgid "help 2-2"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:158
+msgid "Field three : color"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-admin-settings.php:163
+msgid "help 2-3"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-settings-page.php:45
+msgid "Options de Clea Add Button"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-settings-page.php:46
+msgid "Clea plugin boilerplate"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-settings-page.php:102
+msgid "My Plugin Options"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-settings-page.php:122
+msgid "Text regarding Section One goes here."
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-settings-page.php:123
+msgid "Text regarding Section Two goes here."
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-settings-page.php:217
+msgid "Indiquer les options dans la définition du champs"
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-settings-page.php:293
+#, php-format
+msgid "This field is type <em>%s</em> and could not be rendered."
+msgstr ""
+
+#: admin/clea-plugin-boilerplate-settings-page.php:337
+msgid "You have entered an invalid e-mail address in : "
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Clea Plugin Boiler Plate"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+#. Author URI of the plugin/theme
+msgid "http://knowledge.parcours-performance.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "A base plugin with a settings page"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Anne-Laure Delpech"
+msgstr ""
