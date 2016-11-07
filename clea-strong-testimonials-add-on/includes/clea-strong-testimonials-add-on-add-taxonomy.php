@@ -95,12 +95,29 @@ function clea_ib_strong_testimonials_query_args( $args ) {
 ******************************************************************************/
 function clea_ib_default_tax_slug_strong_testimonials( $post_id ){
 		
+	// get option value
+	$settings = (array) get_option( "clea-strong-testimonials-add-on-settings" );
+	$field = $arguments[ 'field_id' ] ;
+
+	// set a $options array with the field id as it's key
+	if ( !empty( $settings ) ) {
+		foreach ( $settings as $key => $option ) {
+			$options[$key] = $option;
+		}
+	}
+
+	// Get term by id (''term_id'') in orientation taxonomy.
+	$default = get_term_by( 'id', $options[ 'default_orientation' ], 'orientation' ) ;
+	
+	$default_term = esc_html( $default->name ) ;	
+	
 	// http://wordpress.stackexchange.com/questions/7168/how-to-add-a-default-item-to-a-custom-taxonomy
 	// will set the default orientation taxonomy term to "orientation-complet" for 
 	// all Strong testimonial custom-post-types (wpm-testimonial) 
 	$current_post = get_post( $post_id );
 	// This makes sure the taxonomy is only set when a new post is created
 	if ( $current_post->post_date == $current_post->post_modified ) {
-		wp_set_object_terms( $post_id, 'orientation-complet', 'orientation', true );
-	}		
+		wp_set_object_terms( $post_id, $default_term, 'orientation', true );
+	}
+	
 }

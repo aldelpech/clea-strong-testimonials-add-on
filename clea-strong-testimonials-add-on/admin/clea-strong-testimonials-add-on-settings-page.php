@@ -20,7 +20,7 @@
 * DEBUG ?
 ***********************************************************************/
 
-define('ENABLE_DEBUG', true );	// if true, the script will echo debug data
+define('ENABLE_DEBUG', false );	// if true, the script will echo debug data
 
 
 // create the settings page and it's menu
@@ -119,6 +119,22 @@ function clea_strong_testimonials_add_on_settings_section_callback( $args  ) {
 	$description = $sect_descr[ $args['id'] ] ;
 	printf( '<span class="section-description">%s<span>', $description );
 
+}
+
+function clea_strong_testimonials_add_on_settings_section_3( $args  ) {
+	
+	$sect_descr = array(
+
+		'section-1' 	=> __( "Définir l'orientation par défaut des nouveaux témoignages.", 'clea-strong-testimonials-add-on' ),
+		'section-2' 	=> __( 'Affecter une page à une orientation spécifique.', 'clea-strong-testimonials-add-on' ),
+		'section-3' 	=> __( 'Les shortcodes pour chaque orientation.', 'clea-strong-testimonials-add-on' ),
+	);		
+
+	$description = $sect_descr[ $args['id'] ] ;
+	printf( '<span class="section-description">%s<span>', $description );
+
+	/* content here ****/
+	
 }
 
 /**********************************************************************
@@ -245,6 +261,12 @@ function clea_strong_testimonials_add_on_assign_page( $arguments  ) {
 
 	printf( '<select id="%2$s" name="%1$s">', $name, $field );
 	$pages = get_pages();
+	
+	// first a "no page attached"
+	$selected = ( $value == '' ) ? 'selected="selected"' : '';
+	printf( '<option value="%1$s" %2$s>%3$s</option>', $value, $selected, "Pas de page attachée" ) ;
+
+	// now all pages
 	foreach ( $pages as $page ) {
 		
 		$selected = ( $value == $page->ID ) ? 'selected="selected"' : '';

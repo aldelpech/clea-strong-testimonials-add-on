@@ -37,7 +37,7 @@ function clea_strong_testimonials_add_on_settings_sections_val() {
 		array(
 			'section_name' 	=> 'section-3',
 			'section_title'	=>  __( 'Shortcodes', 'clea-strong-testimonials-add-on' ),
-			'section_callbk'=> 'clea_strong_testimonials_add_on_settings_section_callback' ,
+			'section_callbk'=> 'clea_strong_testimonials_add_on_settings_section_3' ,
 			'menu_slug'		=> 'clea-strong-testimonials-add-on'
 			),
 	);	
@@ -55,7 +55,7 @@ function clea_strong_testimonials_add_on_settings_fields_val() {
 
 	$section_1_fields = array (
 		array(
-			'field_id' 		=> 'field-1-1', 							
+			'field_id' 		=> 'default_orientation', 							
 			'label'			=> __( 'Orientation par défaut', 'clea-strong-testimonials-add-on' ), 	
 			'field_callbk'	=> 'clea_strong_testimonials_add_on_default_orientation', 					
 			'menu_slug'		=> 'clea-strong-testimonials-add-on', 							
