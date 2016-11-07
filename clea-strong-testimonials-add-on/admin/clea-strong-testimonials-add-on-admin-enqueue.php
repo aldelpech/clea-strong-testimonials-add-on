@@ -21,8 +21,8 @@ function clea_strong_testimonials_add_on_admin_enqueue_scripts( $hook ) {
 	// the name is somewhere in the <body class="">
 	// it will always begin with settings_page_
 	if( 'settings_page_clea-strong-testimonials-add-on' != $hook ) { 
-        echo "not the right page, this is : " ;
-		echo $hook ;
+        // echo "not the right page, this is : " ;
+		// echo $hook ;
 		return;
 		
     }
