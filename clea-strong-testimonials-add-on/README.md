@@ -43,10 +43,12 @@ That's all.
 == Changelog ==
 
 = TODO =
-* use plugin settings page to associate pages to orientation slugs or terms
-* use plugin settings page to assign a term as a default "orientation"
 * create shortcodes filtering each orientation term (shortcodes must be displayed on settings page)
 * use shortcodes to set the "fonctions" field with a drop-down list
+
+= 0.3 =
+* use plugin settings page to associate pages to orientation slugs or terms
+* use plugin settings page to assign a term as a default "orientation"
 
 = 0.2 =
 * filter testimonials queries for specific pages set (hard coded)

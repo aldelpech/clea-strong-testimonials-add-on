@@ -10,7 +10,7 @@
 * Text Domain: clea-strong-testimonials-add-on
 * 
 * @package		clea-strong-testimonials-add-on
-* @version		1.0
+* @version		0.3
 * @author 		Anne-Laure Delpech
 * @copyright 	Copyright (c) 2016 Anne-Laure Delpech
 * @link			https://github.com/aldelpech/CLEA-presentation

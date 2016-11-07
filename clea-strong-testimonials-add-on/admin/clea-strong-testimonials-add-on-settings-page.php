@@ -133,7 +133,48 @@ function clea_strong_testimonials_add_on_settings_section_3( $args  ) {
 	$description = $sect_descr[ $args['id'] ] ;
 	printf( '<span class="section-description">%s<span>', $description );
 
-	/* content here ****/
+	/* TEST content here ----------------------------------------------------*/
+	$options = clea_ib_default_tax_get_options() ;
+
+	foreach( $options as $key => $term ) {
+		echo "<p>" . $key . " | " ;
+		if( empty( $term ) ) {
+			echo "empty" ;
+		} else {
+			echo $term ;
+		}
+		echo "</p>";
+	}
+
+	// flip the options array (values become keys and keys become values)
+	
+	// erase empty values http://www.thecave.info/quickest-way-remove-empty-array-elements-php/
+	
+	
+	// flip the options array (values become keys and keys become values)
+	$page_attached = array_filter( $options, function($v){return $v !== '';});
+	echo "<hr /><p>page_attached filtered </p><pre>";
+	print_r( $page_attached ) ;	
+	echo "</pre><hr />";	
+
+	$page_attached = array_flip( $page_attached );
+	echo "<hr /><p>page_attached flipped </p><pre>";
+	print_r( $page_attached ) ;	
+	echo "</pre><hr />";		
+	
+	
+	$current_page_id = 914 ;	
+
+	if ( isset( $page_attached[ $current_page_id ]) ) {
+
+		// this page should not display everything 
+		$term = $page_attached[ $current_page_id ] ;
+		$slug = preg_replace( '/^p_/', '', $term ); 
+	} else {
+		$slug = 'orientation-complet' ;
+	}	
+	echo "<p>" . $slug . "</p>" ;
+	/* END TEST content  ----------------------------------------------------*/
 	
 }
 

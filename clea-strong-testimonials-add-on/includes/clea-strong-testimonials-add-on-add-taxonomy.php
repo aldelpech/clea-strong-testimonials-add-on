@@ -60,31 +60,52 @@ function clea_ib_add_taxonomy_to_strong_testimonial() {
 * set specific terms to specific pages
 ******************************************************************************/
 function clea_ib_strong_testimonials_query_args( $args ) {
-	/* using the term ID: */
-	
-	/*
-	$args['tax_query'] = array(
-		array(
-			'taxonomy' => 'orientation',
-			'field'    => 'id',
-			'terms'    => 123
-		)
-	);
+
+	$options = clea_ib_default_tax_get_options() ;
+
+	/* will return something like 
+	Array
+	(
+		[0] => 
+		[default_orientation] => 11
+		[p_orientation-avant-apres] => 
+		[p_orientation-comment] => 72
+		[p_orientation-complet] => 
+		[p_orientation-isabelle] => 
+		[p_orientation-methode] => 
+	)
 	*/
-	if ( is_page( 914 ) ) {
-		
-		$orientation_tag_slug = 'orientation-isabelle' ;
+	
+/**
+* si la page a une id qui n'est pas dans l'array
+	alors default tag = 'orientation-complet'
+* sinon 
+	alors tag = la key (pregreplaced)
+*/
+
+	// erase empty values http://www.thecave.info/quickest-way-remove-empty-array-elements-php/
+	$page_attached = array_filter( $options, function($v){return $v !== '';});
+
+	// flip the options array (values become keys and keys become values)
+	$page_attached = array_flip( $page_attached );
+	
+	$current_page_id = get_the_ID();	
+
+	if ( isset( $page_attached[ $current_page_id ]) ) {
+
+		// this page should not display everything 
+		$term = $page_attached[ $current_page_id ] ;
+		$slug = preg_replace( '/^p_/', '', $term ); 
 	} else {
-		
-		$orientation_tag_slug = 'orientation-complet' ;
-		
-	}
+		$slug = 'orientation-complet' ;
+	}	
+
 	/* using the term slug: */
 	$args['tax_query'] = array(
 		array(
 			'taxonomy' => 'orientation',
 			'field'    => 'slug',
-			'terms'    => $orientation_tag_slug
+			'terms'    => $slug
 		)
 	);	
 	return $args;
@@ -95,17 +116,8 @@ function clea_ib_strong_testimonials_query_args( $args ) {
 ******************************************************************************/
 function clea_ib_default_tax_slug_strong_testimonials( $post_id ){
 		
-	// get option value
-	$settings = (array) get_option( "clea-strong-testimonials-add-on-settings" );
-	$field = $arguments[ 'field_id' ] ;
-
-	// set a $options array with the field id as it's key
-	if ( !empty( $settings ) ) {
-		foreach ( $settings as $key => $option ) {
-			$options[$key] = $option;
-		}
-	}
-
+	$options = clea_ib_default_tax_get_options() ;
+	
 	// Get term by id (''term_id'') in orientation taxonomy.
 	$default = get_term_by( 'id', $options[ 'default_orientation' ], 'orientation' ) ;
 	
@@ -119,5 +131,26 @@ function clea_ib_default_tax_slug_strong_testimonials( $post_id ){
 	if ( $current_post->post_date == $current_post->post_modified ) {
 		wp_set_object_terms( $post_id, $default_term, 'orientation', true );
 	}
+	
+}
+
+/*
+* 
+/******************************************************************************
+* get options 
+******************************************************************************/
+function clea_ib_default_tax_get_options() {
+
+	// get option value
+	$settings = (array) get_option( "clea-strong-testimonials-add-on-settings" );
+
+	// set a $options array with the field id as it's key
+	if ( !empty( $settings ) ) {
+		foreach ( $settings as $key => $option ) {
+			$options[$key] = $option;
+		}
+	}
+
+	return $options ;
 	
 }
