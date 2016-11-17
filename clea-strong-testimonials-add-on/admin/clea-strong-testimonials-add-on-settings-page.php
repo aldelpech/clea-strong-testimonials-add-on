@@ -20,7 +20,7 @@
 * DEBUG ?
 ***********************************************************************/
 
-define('ENABLE_DEBUG', false );	// if true, the script will echo debug data
+define('AL_ENABLE_DEBUG', false );	// if true, the script will echo debug data
 
 
 function clea_strong_testimonials_add_on_admin_menu() {
@@ -224,7 +224,7 @@ function clea_strong_testimonials_add_on_default_orientation( $arguments  ) {
 	) );
 
 	// for development only
-	if ( ENABLE_DEBUG ) {
+	if ( AL_ENABLE_DEBUG ) {
 		
 		echo "<hr /><p>Arguments</p><pre>";
 		print_r( $arguments ) ;	
@@ -367,3 +367,4 @@ function clea_strong_testimonials_add_on_settings_validate_and_sanitize( $input 
 	return $output;
 }
 
+?>

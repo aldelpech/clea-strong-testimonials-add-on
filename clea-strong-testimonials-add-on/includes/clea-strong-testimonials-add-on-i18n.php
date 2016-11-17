@@ -19,3 +19,4 @@ function clea_strong_testimonials_add_on_load_plugin_textdomain() {
     load_plugin_textdomain( 'clea-strong-testimonials-add-on', FALSE, dirname( CLEA_STRONG_TESTIMONIALS_ADD_ON_BASENAME ) . '/languages' );
 	
 }
+?>

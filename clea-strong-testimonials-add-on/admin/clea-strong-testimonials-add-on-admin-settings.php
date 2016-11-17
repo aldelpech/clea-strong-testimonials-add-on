@@ -18,7 +18,6 @@
 * THE SECTIONS
 
 **********************************************************************/
-
 function clea_strong_testimonials_add_on_settings_sections_val() {
 
 	$sections = array(
@@ -45,6 +44,7 @@ function clea_strong_testimonials_add_on_settings_sections_val() {
 	return $sections ;
 	
 }
+
 
 /**********************************************************************
 
@@ -103,3 +103,5 @@ function clea_strong_testimonials_add_on_settings_fields_val() {
 	
 	return $section_fields ;
 }
+
+?>

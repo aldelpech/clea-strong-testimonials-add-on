@@ -112,3 +112,4 @@ function clea_ib_default_tax_get_options() {
 	return $options ;
 	
 }
+?>

@@ -20,4 +20,4 @@ function clea_strong_testimonials_add_on_enqueue_scripts() {
 	wp_enqueue_style( 'clea-strong-testimonials-add-on', get_stylesheet_directory_uri() . '/css/clea-strong-testimonials-style.css', array(), false, 'all' );
 
 }
-
+?>

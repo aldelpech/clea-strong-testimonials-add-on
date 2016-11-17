@@ -29,7 +29,7 @@ define( 'CLEA_STRONG_TESTIMONIALS_ADD_ON_BASENAME', plugin_basename( CLEA_STRONG
 define( 'CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH', plugin_dir_path( CLEA_STRONG_TESTIMONIALS_ADD_ON_FILE ));
 define( 'CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_URL', plugin_dir_url( CLEA_STRONG_TESTIMONIALS_ADD_ON_FILE ));
 
-/*
+
 // charger des styles, fonts ou scripts correctement
 require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'includes/clea-strong-testimonials-add-on-enqueues.php'; 
 
@@ -42,35 +42,36 @@ require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'includes/clea-strong-te
 // create shortcode to filter the query by this taxonomy. 
 require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'includes/clea-strong-testimonials-add-on-shortcodes.php'; 
 
-// the sections and fields data for the settings page. 
-require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'admin/clea-strong-testimonials-add-on-admin-settings.php'; 
 
-// load styles and scripts for the admin
-require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'admin/clea-strong-testimonials-add-on-admin-enqueue.php'; 
-*/
-/**** erreur "3 caractères d'affichage inattendu lors de l'activation" ***/
+if ( is_admin() ) {
+	// the sections and fields data for the settings page. 
+	require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'admin/clea-strong-testimonials-add-on-admin-settings.php'; 
 
-// Settings page for the admin
-// require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'admin/clea-strong-testimonials-add-on-settings-page.php'; 
+	// load styles and scripts for the admin
+	require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'admin/clea-strong-testimonials-add-on-admin-enqueue.php'; 
 
+	// Settings page for the admin
+	require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'admin/clea-strong-testimonials-add-on-settings-page.php'; 
+}
 
 // add a new taxonomy to strong testimonials
 add_action( 'init', 'clea_ib_add_taxonomy_to_strong_testimonial', 11 );	
 
 /*
-	// default "orientation" for a new testimonial
-	add_action( 'save_post_wpm-testimonial', 'clea_ib_default_tax_slug_strong_testimonials' );
+// for admin
+add_action( 'admin_enqueue_scripts',  'clea_strong_testimonials_add_on_admin_enqueue_scripts' );
 
-	// functions for strong testimonials orientation taxonomy
-	add_filter( 'wpmtst_query_args', 'clea_ib_strong_testimonials_query_args' );
-	
-	add_action( 'admin_enqueue_scripts',  'clea_strong_testimonials_add_on_admin_enqueue_scripts' );
+// default "orientation" for a new testimonial
+add_action( 'save_post_wpm-testimonial', 'clea_ib_default_tax_slug_strong_testimonials' );
 
-	// create the settings page and it's menu
-	add_action( 'admin_menu', 'clea_strong_testimonials_add_on_admin_menu', 11 );
+// functions for strong testimonials orientation taxonomy
+add_filter( 'wpmtst_query_args', 'clea_ib_strong_testimonials_query_args' );
 
-	// set the content of the admin page
-	add_action( 'admin_init', 'clea_strong_testimonials_add_on_admin_init' );
+// create the settings page and it's menu
+add_action( 'admin_menu', 'clea_strong_testimonials_add_on_admin_menu', 11 );
+
+// set the content of the admin page
+add_action( 'admin_init', 'clea_strong_testimonials_add_on_admin_init' );
 */
 
 /******************************************************************************
@@ -90,6 +91,13 @@ function clea_ib_add_taxonomy_to_strong_testimonial() {
 		'new_item_name'     => __( 'Nom de la nouvelle orientation', 'clea-2-IB' ),
 		'menu_name'         => __( 'Orientations', 'clea-2-IB' ),
 	);
+
+	$capa = array (
+		'manage_terms' => 'manage_options', //by default only admin
+		'edit_terms' => 'manage_options',
+		'delete_terms' => 'manage_options',
+		'assign_terms' => 'edit_posts'  // means administrator', 'editor', 'author', 'contributor'
+	) ;
 	
 	$args = array(
 		'labels' => $labels,
@@ -98,8 +106,12 @@ function clea_ib_add_taxonomy_to_strong_testimonial() {
 		'args' 				=> array( 'orderby' => 'term_order' ),
 		'rewrite' 			=> array( 'slug' => 'orientation-tag' ),
 		'show_admin_column' => true,
-		'default_term'		=> 'orientation-complet'
+		'default_term'		=> 'orientation-complet',
+		'capabilities'		=> $capa
 	);
+
+
+
     // register the taxonomy
     register_taxonomy( 'orientation', 'wpm-testimonial', $args );
 	
@@ -121,7 +133,7 @@ function clea_strong_testimonials_add_on_activation() {
 	}
 	
 	clea_ib_add_taxonomy_to_strong_testimonial() ;
-	flush_rewrite_rules();
+	// flush_rewrite_rules();
 
 }
 
@@ -178,3 +190,4 @@ function clea_strong_testimonials_add_on_disable_plugin() {
         }
     }	
 }
+?>

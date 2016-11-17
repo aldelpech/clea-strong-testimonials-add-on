@@ -13,7 +13,6 @@
  */
  
 
-
 function clea_strong_testimonials_add_on_admin_enqueue_scripts( $hook ) {
 	
 
@@ -59,8 +58,7 @@ function clea_strong_testimonials_add_on_admin_enqueue_scripts( $hook ) {
         CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_URL . 'admin/css/clea-strong-testimonials-add-on-admin.css'
     );
 
+
 	
-} 
-
-
-
+}
+?>

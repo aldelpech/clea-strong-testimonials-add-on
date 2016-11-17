@@ -12,3 +12,4 @@
  * Text Domain: clea-strong-testimonials-add-on
  */
 
+?>
