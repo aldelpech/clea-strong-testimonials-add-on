@@ -12,7 +12,7 @@
  * Text Domain: clea-strong-testimonials-add-on
  */
  
-add_action( 'admin_enqueue_scripts',  'clea_strong_testimonials_add_on_admin_enqueue_scripts' );
+
 
 function clea_strong_testimonials_add_on_admin_enqueue_scripts( $hook ) {
 	

@@ -13,48 +13,6 @@
  */
 
  
-// add a new taxonomy to strong testimonials
-add_action( 'init', 'clea_ib_add_taxonomy_to_strong_testimonial', 11 );	
-
-// default "orientation" for a new testimonial
-add_action( 'save_post_wpm-testimonial', 'clea_ib_default_tax_slug_strong_testimonials' );
-
-// functions for strong testimonials orientation taxonomy
-add_filter( 'wpmtst_query_args', 'clea_ib_strong_testimonials_query_args' );
-
-
-
-/******************************************************************************
-* create new "orientation" taxonomy
-******************************************************************************/
-function clea_ib_add_taxonomy_to_strong_testimonial() {
-	
-	// for 'post_types' => array( 'wpm-testimonial' ),
-  $labels = array(
-		'name'              => __( 'Orientations', 'clea-2-IB' ),
-		'singular_name'     => __( 'Orientation', 'clea-2-IB' ),
-		'search_items'      => __( 'Chercher dans les Orientations', 'clea-2-IB' ),
-		'all_items'         => __( 'Toutes les orientations', 'clea-2-IB' ),
-		'edit_item'         => __( 'Modifier l\'orientation', 'clea-2-IB' ),
-		'update_item'       => __( 'Mettre à jour l\'orientation', 'clea-2-IB' ),
-		'add_new_item'      => __( 'Ajouter une nouvelle  orientation', 'clea-2-IB' ),
-		'new_item_name'     => __( 'Nom de la nouvelle orientation', 'clea-2-IB' ),
-		'menu_name'         => __( 'Orientations', 'clea-2-IB' ),
-	);
-	
-	$args = array(
-		'labels' => $labels,
-		'hierarchical' 		=> true,
-		'sort' 				=> true,
-		'args' 				=> array( 'orderby' => 'term_order' ),
-		'rewrite' 			=> array( 'slug' => 'orientation-tag' ),
-		'show_admin_column' => true,
-		'default_term'		=> 'orientation-complet'
-	);
-    // register the taxonomy
-    register_taxonomy( 'orientation', 'wpm-testimonial', $args );
-	
-}
 
 /******************************************************************************
 * set specific terms to specific pages

@@ -23,76 +23,105 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
+// Path to files
+define( 'CLEA_STRONG_TESTIMONIALS_ADD_ON_FILE', __FILE__ );
+define( 'CLEA_STRONG_TESTIMONIALS_ADD_ON_BASENAME', plugin_basename( CLEA_STRONG_TESTIMONIALS_ADD_ON_FILE ));
+define( 'CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH', plugin_dir_path( CLEA_STRONG_TESTIMONIALS_ADD_ON_FILE ));
+define( 'CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_URL', plugin_dir_url( CLEA_STRONG_TESTIMONIALS_ADD_ON_FILE ));
+
+/*
+// charger des styles, fonts ou scripts correctement
+require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'includes/clea-strong-testimonials-add-on-enqueues.php'; 
+
+// internationalisation de l'extension
+require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'includes/clea-strong-testimonials-add-on-i18n.php'; 
+
+// do the job : add testimonial taxonomy. 
+require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'includes/clea-strong-testimonials-add-on-add-taxonomy.php'; 	
+
+// create shortcode to filter the query by this taxonomy. 
+require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'includes/clea-strong-testimonials-add-on-shortcodes.php'; 
+
+// the sections and fields data for the settings page. 
+require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'admin/clea-strong-testimonials-add-on-admin-settings.php'; 
+
+// load styles and scripts for the admin
+require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'admin/clea-strong-testimonials-add-on-admin-enqueue.php'; 
+*/
+/**** erreur "3 caractères d'affichage inattendu lors de l'activation" ***/
+
+// Settings page for the admin
+// require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'admin/clea-strong-testimonials-add-on-settings-page.php'; 
+
+
+// add a new taxonomy to strong testimonials
+add_action( 'init', 'clea_ib_add_taxonomy_to_strong_testimonial', 11 );	
+
+/*
+	// default "orientation" for a new testimonial
+	add_action( 'save_post_wpm-testimonial', 'clea_ib_default_tax_slug_strong_testimonials' );
+
+	// functions for strong testimonials orientation taxonomy
+	add_filter( 'wpmtst_query_args', 'clea_ib_strong_testimonials_query_args' );
+	
+	add_action( 'admin_enqueue_scripts',  'clea_strong_testimonials_add_on_admin_enqueue_scripts' );
+
+	// create the settings page and it's menu
+	add_action( 'admin_menu', 'clea_strong_testimonials_add_on_admin_menu', 11 );
+
+	// set the content of the admin page
+	add_action( 'admin_init', 'clea_strong_testimonials_add_on_admin_init' );
+*/
+
 /******************************************************************************
-* Before loading, check if strong_testimonials is active
-* @since 0.1 
+* create new "orientation" taxonomy
 ******************************************************************************/
+function clea_ib_add_taxonomy_to_strong_testimonial() {
 
-
-add_action( 'init', 'clea_strong_testimonials_add_on_init' );
-
-function clea_strong_testimonials_add_on_init() {
-
-	if( class_exists( 'Strong_Testimonials' ) ) {
-		// strong-testimonials is active
-		add_action( 'init', 'clea_strong_testimonials_add_on_setup' );
-	} else {
-		
-		// notify user_error
-		add_action( 'admin_init', 'clea_strong_testimonials_add_on_disable_plugin' );
-		add_action( 'admin_notices', 'clea_strong_testimonials_add_on_notice__error' );
-	}
-
+	// for 'post_types' => array( 'wpm-testimonial' ),
+	$labels = array(
+		'name'              => __( 'Orientations', 'clea-2-IB' ),
+		'singular_name'     => __( 'Orientation', 'clea-2-IB' ),
+		'search_items'      => __( 'Chercher dans les Orientations', 'clea-2-IB' ),
+		'all_items'         => __( 'Toutes les orientations', 'clea-2-IB' ),
+		'edit_item'         => __( 'Modifier l\'orientation', 'clea-2-IB' ),
+		'update_item'       => __( 'Mettre à jour l\'orientation', 'clea-2-IB' ),
+		'add_new_item'      => __( 'Ajouter une nouvelle  orientation', 'clea-2-IB' ),
+		'new_item_name'     => __( 'Nom de la nouvelle orientation', 'clea-2-IB' ),
+		'menu_name'         => __( 'Orientations', 'clea-2-IB' ),
+	);
+	
+	$args = array(
+		'labels' => $labels,
+		'hierarchical' 		=> true,
+		'sort' 				=> true,
+		'args' 				=> array( 'orderby' => 'term_order' ),
+		'rewrite' 			=> array( 'slug' => 'orientation-tag' ),
+		'show_admin_column' => true,
+		'default_term'		=> 'orientation-complet'
+	);
+    // register the taxonomy
+    register_taxonomy( 'orientation', 'wpm-testimonial', $args );
+	
 }
-	
-/******************************************************************************
-* Install plugin 
-* @since 0.2 
-******************************************************************************/
-
-function clea_strong_testimonials_add_on_setup() {
-
-	// Path to files
-	define( 'CLEA_STRONG_TESTIMONIALS_ADD_ON_FILE', __FILE__ );
-	define( 'CLEA_STRONG_TESTIMONIALS_ADD_ON_BASENAME', plugin_basename( CLEA_STRONG_TESTIMONIALS_ADD_ON_FILE ));
-	define( 'CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH', plugin_dir_path( CLEA_STRONG_TESTIMONIALS_ADD_ON_FILE ));
-	define( 'CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_URL', plugin_dir_url( CLEA_STRONG_TESTIMONIALS_ADD_ON_FILE ));
-			
-	/* appeler d'autres fichiers php et les exécuter
-	* @since 0.1
-	*/	
-		
-	// charger des styles, fonts ou scripts correctement
-	require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'includes/clea-strong-testimonials-add-on-enqueues.php'; 
-
-	// internationalisation de l'extension
-	require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'includes/clea-strong-testimonials-add-on-i18n.php'; 
-
-	// Settings page for the admin
-	require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'admin/clea-strong-testimonials-add-on-settings-page.php'; 
-
-	// load styles and scripts for the admin
-	require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'admin/clea-strong-testimonials-add-on-admin-enqueue.php'; 
-
-	// the sections and fields data for the settings page. 
-	require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'admin/clea-strong-testimonials-add-on-admin-settings.php'; 
-	
-	// do the job : add testimonial taxonomy. 
-	require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'includes/clea-strong-testimonials-add-on-add-taxonomy.php'; 	
-
-	// create shortcode to filter the query by this taxonomy. 
-	require_once CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_PATH . 'includes/clea-strong-testimonials-add-on-shortcodes.php'; 	
-} 
-
-
-
 
 
 
 /*----------------------------------------------------------------------------*
  * Activation 
+* @since 0.1
  *----------------------------------------------------------------------------*/	
 function clea_strong_testimonials_add_on_activation() {
+
+	// Before activating, check if strong_testimonials is active
+	if( ! class_exists( 'Strong_Testimonials' ) ) {
+		// strong-testimonials is not active
+		add_action( 'admin_notices', 'clea_strong_testimonials_add_on_notice__error' );
+		exit ;
+	}
+	
+	clea_ib_add_taxonomy_to_strong_testimonial() ;
+	flush_rewrite_rules();
 
 }
 
@@ -106,6 +135,8 @@ register_deactivation_hook(__FILE__, 'clea_strong_testimonials_add_on_deactivati
 
 
 function clea_strong_testimonials_add_on_deactivation() {
+
+	flush_rewrite_rules();
 	
 }
 

@@ -23,13 +23,6 @@
 define('ENABLE_DEBUG', false );	// if true, the script will echo debug data
 
 
-// create the settings page and it's menu
-add_action( 'admin_menu', 'clea_strong_testimonials_add_on_admin_menu' );
-
-// set the content of the admin page
-add_action( 'admin_init', 'clea_strong_testimonials_add_on_admin_init' );
-
-
 function clea_strong_testimonials_add_on_admin_menu() {
 
     add_submenu_page( 
