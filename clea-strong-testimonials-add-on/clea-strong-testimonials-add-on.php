@@ -29,18 +29,34 @@ define( 'CSTAO_BASENAME', plugin_basename( CSTAO_FILE ));
 define( 'CSTAO_DIR_PATH', plugin_dir_path( CSTAO_FILE ));
 define( 'CSTAO_DIR_URL', plugin_dir_url( CSTAO_FILE ));
 
+/***** LOAD everything for front end *******/
+
 // charger des styles, fonts ou scripts correctement
-//require_once CSTAO_DIR_PATH . 'includes/clea-strong-testimonials-add-on-enqueues.php'; 
+require_once CSTAO_DIR_PATH . 'includes/clea-strong-testimonials-add-on-enqueues.php'; 
 
 // internationalisation de l'extension
 require_once CSTAO_DIR_PATH . 'includes/clea-strong-testimonials-add-on-i18n.php'; 
 
 // do the job : add testimonial taxonomy. 
-// require_once CSTAO_DIR_PATH . 'includes/clea-strong-testimonials-add-on-add-taxonomy.php'; 	
+require_once CSTAO_DIR_PATH . 'includes/clea-strong-testimonials-add-on-add-taxonomy.php'; 	
 
-// create shortcode to filter the query by this taxonomy. 
-// require_once CSTAO_DIR_PATH . 'includes/clea-strong-testimonials-add-on-shortcodes.php'; 
+add_action( 'plugins_loaded', 'clea_ib_check_strong_testimonial' );
 
+// add a new taxonomy to strong testimonials
+add_action( 'init', 'clea_ib_add_taxonomy_to_strong_testimonial', 11 );	
+
+add_action( 'plugins_loaded', 'clea_strong_testimonials_add_on_load_plugin_textdomain' );
+
+// default "orientation" for a new testimonial
+add_action( 'save_post_wpm-testimonial', 'clea_ib_default_tax_slug_strong_testimonials' );
+
+// functions for strong testimonials orientation taxonomy
+add_filter( 'wpmtst_query_args', 'clea_ib_strong_testimonials_query_args' );
+
+// load front end styles and scripts
+add_action( 'wp_enqueue_scripts', 'clea_strong_testimonials_add_on_enqueue_scripts' ); 
+
+/***** LOAD everything for ADMIN *******/
 
 if ( is_admin() ) {
 	// the sections and fields data for the settings page. 
@@ -53,30 +69,14 @@ if ( is_admin() ) {
 	// require_once CSTAO_DIR_PATH . 'admin/clea-strong-testimonials-add-on-settings-page.php'; 
 }
 
-add_action( 'plugins_loaded', 'clea_ib_check_strong_testimonial' );
-
-// add a new taxonomy to strong testimonials
-add_action( 'init', 'clea_ib_add_taxonomy_to_strong_testimonial', 11 );	
-
-add_action( 'plugins_loaded', 'clea_strong_testimonials_add_on_load_plugin_textdomain' );
-
-/*
-// for admin
-add_action( 'admin_enqueue_scripts',  'clea_strong_testimonials_add_on_admin_enqueue_scripts' );
-
-// default "orientation" for a new testimonial
-add_action( 'save_post_wpm-testimonial', 'clea_ib_default_tax_slug_strong_testimonials' );
-
-// functions for strong testimonials orientation taxonomy
-add_filter( 'wpmtst_query_args', 'clea_ib_strong_testimonials_query_args' );
-
 // create the settings page and it's menu
-add_action( 'admin_menu', 'clea_strong_testimonials_add_on_admin_menu', 11 );
+// add_action( 'admin_menu', 'clea_strong_testimonials_add_on_admin_menu', 11 );
 
 // set the content of the admin page
-add_action( 'admin_init', 'clea_strong_testimonials_add_on_admin_init' );
-*/
+// add_action( 'admin_init', 'clea_strong_testimonials_add_on_admin_init' );
 
+// for admin
+// add_action( 'admin_enqueue_scripts',  'clea_strong_testimonials_add_on_admin_enqueue_scripts' );
 
 /******************************************************************************
 * create new "orientation" taxonomy
