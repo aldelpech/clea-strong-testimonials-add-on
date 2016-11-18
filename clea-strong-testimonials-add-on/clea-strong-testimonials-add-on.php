@@ -60,13 +60,13 @@ add_action( 'wp_enqueue_scripts', 'clea_strong_testimonials_add_on_enqueue_scrip
 
 if ( is_admin() ) {
 	// the sections and fields data for the settings page. 
-	// require_once CSTAO_DIR_PATH . 'admin/clea-strong-testimonials-add-on-admin-settings.php'; 
+	require_once CSTAO_DIR_PATH . 'admin/clea-strong-testimonials-add-on-admin-settings.php'; 
 
 	// load styles and scripts for the admin
-	// require_once CSTAO_DIR_PATH . 'admin/clea-strong-testimonials-add-on-admin-enqueue.php'; 
+	require_once CSTAO_DIR_PATH . 'admin/clea-strong-testimonials-add-on-admin-enqueue.php'; 
 
 	// Settings page for the admin
-	// require_once CSTAO_DIR_PATH . 'admin/clea-strong-testimonials-add-on-settings-page.php'; 
+	require_once CSTAO_DIR_PATH . 'admin/clea-strong-testimonials-add-on-settings-page.php'; 
 }
 
 // create the settings page and it's menu
