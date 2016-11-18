@@ -33,7 +33,7 @@ define( 'CSTAO_DIR_URL', plugin_dir_url( CSTAO_FILE ));
 //require_once CSTAO_DIR_PATH . 'includes/clea-strong-testimonials-add-on-enqueues.php'; 
 
 // internationalisation de l'extension
-// require_once CSTAO_DIR_PATH . 'includes/clea-strong-testimonials-add-on-i18n.php'; 
+require_once CSTAO_DIR_PATH . 'includes/clea-strong-testimonials-add-on-i18n.php'; 
 
 // do the job : add testimonial taxonomy. 
 // require_once CSTAO_DIR_PATH . 'includes/clea-strong-testimonials-add-on-add-taxonomy.php'; 	
@@ -58,6 +58,7 @@ add_action( 'plugins_loaded', 'clea_ib_check_strong_testimonial' );
 // add a new taxonomy to strong testimonials
 add_action( 'init', 'clea_ib_add_taxonomy_to_strong_testimonial', 11 );	
 
+add_action( 'plugins_loaded', 'clea_strong_testimonials_add_on_load_plugin_textdomain' );
 
 /*
 // for admin
