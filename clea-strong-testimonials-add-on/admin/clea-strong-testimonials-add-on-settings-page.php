@@ -127,6 +127,8 @@ function clea_strong_testimonials_add_on_settings_section_3( $args  ) {
 	printf( '<span class="section-description">%s<span>', $description );
 
 	/* TEST content here ----------------------------------------------------*/
+	
+	/*
 	$options = clea_ib_default_tax_get_options() ;
 
 	foreach( $options as $key => $term ) {
@@ -167,6 +169,7 @@ function clea_strong_testimonials_add_on_settings_section_3( $args  ) {
 		$slug = 'orientation-complet' ;
 	}	
 	echo "<p>" . $slug . "</p>" ;
+	*/
 	/* END TEST content  ----------------------------------------------------*/
 	
 }
@@ -202,7 +205,7 @@ function clea_strong_testimonials_add_on_default_orientation( $arguments  ) {
 	
     if( isset( $arguments['helper'] ) && $helper = $arguments['helper'] ){
 
-		printf( '<span class="helper" data-descr="%2$s"><img src="%1$simages/question-mark.png" class="alignleft" id="helper" alt="help" data-pin-nopin="true"></span>',CLEA_STRONG_TESTIMONIALS_ADD_ON_DIR_URL, $helper ) ;
+		printf( '<span class="helper" data-descr="%2$s"><img src="%1$simages/question-mark.png" class="alignleft" id="helper" alt="help" data-pin-nopin="true"></span>',CSTAO_DIR_URL, $helper ) ;
     }
 	
 	// If there is a description

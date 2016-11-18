@@ -67,16 +67,19 @@ if ( is_admin() ) {
 
 	// Settings page for the admin
 	require_once CSTAO_DIR_PATH . 'admin/clea-strong-testimonials-add-on-settings-page.php'; 
-}
 
-// create the settings page and it's menu
-// add_action( 'admin_menu', 'clea_strong_testimonials_add_on_admin_menu', 11 );
+	// create the settings page and it's menu
+	add_action( 'admin_menu', 'clea_strong_testimonials_add_on_admin_menu', 11 );
 
-// set the content of the admin page
-// add_action( 'admin_init', 'clea_strong_testimonials_add_on_admin_init' );
+	// set the content of the admin page
+	add_action( 'admin_init', 'clea_strong_testimonials_add_on_admin_init', 11 );
 
-// for admin
-// add_action( 'admin_enqueue_scripts',  'clea_strong_testimonials_add_on_admin_enqueue_scripts' );
+	// for admin
+	add_action( 'admin_enqueue_scripts',  'clea_strong_testimonials_add_on_admin_enqueue_scripts' );
+	
+	}
+
+
 
 /******************************************************************************
 * create new "orientation" taxonomy
