@@ -34,6 +34,7 @@ function clea_ib_strong_testimonials_query_args( $args ) {
 	)
 	*/
 	
+
 /**
 * si la page a une id qui n'est pas dans l'array
 	alors default tag = 'orientation-complet'
@@ -43,30 +44,61 @@ function clea_ib_strong_testimonials_query_args( $args ) {
 
 	// erase empty values http://www.thecave.info/quickest-way-remove-empty-array-elements-php/
 	$page_attached = array_filter( $options, function($v){return $v !== '';});
-
-	// flip the options array (values become keys and keys become values)
-	$page_attached = array_flip( $page_attached );
 	
 	$current_page_id = get_the_ID();	
 
-	if ( isset( $page_attached[ $current_page_id ]) ) {
+	/*
+	echo "<hr /><p>Page_attached array (clea-strong-testimonials-add-on-add-taxonomy.php)</p><pre>";
+	print_r( $page_attached ) ;	
+	echo "</pre>" ;
+	echo "<p>Page ID : " . $current_page_id . "</p><hr />";	
+	*/
+	
+	$slugs = array() ;
 
-		// this page should not display everything 
-		$term = $page_attached[ $current_page_id ] ;
-		$slug = preg_replace( '/^p_/', '', $term ); 
-	} else {
-		$slug = 'orientation-complet' ;
-	}	
+	foreach( $page_attached as $or => $p_id ) {
+		
+		// each $or will be like p_orientation-comment where tag is orientation-comment
+		
+		if( $current_page_id == $p_id ) {
+			
+			$slug = preg_replace( '/^p_/', '', $or ); 
+			array_push( $slugs, $slug )  ;	
+			
+		}
 
-	/* using the term slug: */
+	}
+	
+	/*
+	echo "<hr /><p>Slugs array (clea-strong-testimonials-add-on-add-taxonomy.php)</p><pre>";
+	print_r( $slugs ) ;	
+	echo "</pre><hr />";	
+	*/
+	
+	if ( 0 == count( $slugs ) ) {
+		
+		$slugs = array( 'orientation-complet' ) ; 
+		
+	} 
+
+
+// should be $query = new WP_Query( array( 'tag__in' => array( 37, 47 ) ) );
+// voir IMPERATIVEMENT https://codex.wordpress.org/Class_Reference/WP_Query
+
+// !!! cherche wor8190_terms.slug IN ('array-orientation-avant-apres-orientation-comment-orientation-complet-orientation-isabelle-orientation-methode')
+
+	
+	// use the term slug: 
 	$args['tax_query'] = array(
 		array(
 			'taxonomy' => 'orientation',
 			'field'    => 'slug',
-			'terms'    => $slug
+			'terms'    => $slugs,
 		)
 	);	
 	return $args;
+
+
 }
 
 /******************************************************************************

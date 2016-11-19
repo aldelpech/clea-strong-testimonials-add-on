@@ -126,7 +126,66 @@ function clea_strong_testimonials_add_on_settings_section_3( $args  ) {
 	$description = $sect_descr[ $args['id'] ] ;
 	printf( '<span class="section-description">%s<span>', $description );
 
+	printf( "<h4>zone d'essais pour l'extension</p>" );
 	/* TEST content here ----------------------------------------------------*/
+	
+		$options = clea_ib_default_tax_get_options() ;
+
+	/* will return something like 
+	Array
+	(
+		[0] => 
+		[default_orientation] => 11
+		[p_orientation-avant-apres] => 
+		[p_orientation-comment] => 72
+		[p_orientation-complet] => 
+		[p_orientation-isabelle] => 
+		[p_orientation-methode] => 
+	)
+	*/
+	
+/**
+* si la page a une id qui n'est pas dans l'array
+	alors default tag = 'orientation-complet'
+* sinon 
+	alors tag = la key (pregreplaced)
+*/
+
+	// erase empty values http://www.thecave.info/quickest-way-remove-empty-array-elements-php/
+	$page_attached = array_filter( $options, function($v){return $v !== '';});
+	
+	$slugs = array() ;
+
+	foreach( $page_attached as $or => $p_id ) {
+		
+		// each $or will be like p_orientation-comment where tag is orientation-comment
+		
+		if( 'default_orientation' != $or ) {
+			
+			$slug = preg_replace( '/^p_/', '', $or ); 
+			array_push( $slugs, $slug )  ;	
+			
+		}
+
+	}
+	
+	echo "<hr /><p>slugs array</p><pre>";
+	print_r( $slugs ) ;	
+	echo "</pre><hr />";	
+	
+	if ( 0 == count( $slugs ) ) {
+		
+		$slugs = array( 'orientation-complet' ) ; 
+		
+	} 
+
+	
+// should be $query = new WP_Query( array( 'tag__in' => array( 37, 47 ) ) );
+// voir IMPERATIVEMENT https://codex.wordpress.org/Class_Reference/WP_Query
+
+// !!! cherche wor8190_terms.slug IN ('array-orientation-avant-apres-orientation-comment-orientation-complet-orientation-isabelle-orientation-methode')
+
+
 	
 	/*
 	$options = clea_ib_default_tax_get_options() ;
