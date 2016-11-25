@@ -16,7 +16,7 @@
 function clea_strong_testimonials_add_on_enqueue_scripts() {
 
 	// feuille de style pour les témoignages (non spécifiques à un site )
-	wp_enqueue_style( 'clea-strong-testimonials-add-on', get_stylesheet_directory_uri() . '/css/clea-strong-testimonials-style.css', array(), false, 'all' );
+	wp_enqueue_style( 'clea-strong-testimonials-add-on', CSTAO_DIR_URL . '/css/clea-strong-testimonials-style.css', array(), false, 'all' );
 
 }
 ?>

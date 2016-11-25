@@ -77,9 +77,7 @@ if ( is_admin() ) {
 	// for admin
 	add_action( 'admin_enqueue_scripts',  'clea_strong_testimonials_add_on_admin_enqueue_scripts' );
 	
-	}
-
-
+}
 
 /******************************************************************************
 * create new "orientation" taxonomy
@@ -123,6 +121,7 @@ function clea_ib_add_taxonomy_to_strong_testimonial() {
 
 		// register the taxonomy
 		register_taxonomy( 'orientation', 'wpm-testimonial', $args );
+		
 
 	}
 }

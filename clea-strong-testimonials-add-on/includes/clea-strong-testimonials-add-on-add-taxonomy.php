@@ -35,24 +35,24 @@ function clea_ib_strong_testimonials_query_args( $args ) {
 	*/
 	
 
-/**
-* si la page a une id qui n'est pas dans l'array
-	alors default tag = 'orientation-complet'
-* sinon 
-	alors tag = la key (pregreplaced)
-*/
+	/**
+	* si la page a une id qui n'est pas dans l'array
+		alors default tag = 'orientation-complet'
+	* sinon 
+		alors tag = la key (pregreplaced)
+	*/
 
 	// erase empty values http://www.thecave.info/quickest-way-remove-empty-array-elements-php/
 	$page_attached = array_filter( $options, function($v){return $v !== '';});
 	
 	$current_page_id = get_the_ID();	
 
-	/*
+/*
 	echo "<hr /><p>Page_attached array (clea-strong-testimonials-add-on-add-taxonomy.php)</p><pre>";
 	print_r( $page_attached ) ;	
 	echo "</pre>" ;
 	echo "<p>Page ID : " . $current_page_id . "</p><hr />";	
-	*/
+*/
 	
 	$slugs = array() ;
 
@@ -69,11 +69,11 @@ function clea_ib_strong_testimonials_query_args( $args ) {
 
 	}
 	
-	/*
+/*
 	echo "<hr /><p>Slugs array (clea-strong-testimonials-add-on-add-taxonomy.php)</p><pre>";
 	print_r( $slugs ) ;	
 	echo "</pre><hr />";	
-	*/
+*/
 	
 	if ( 0 == count( $slugs ) ) {
 		
