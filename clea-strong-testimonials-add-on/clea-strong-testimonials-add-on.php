@@ -43,7 +43,9 @@ require_once CSTAO_DIR_PATH . 'includes/clea-strong-testimonials-add-on-add-taxo
 add_action( 'plugins_loaded', 'clea_ib_check_strong_testimonial' );
 
 // add a new taxonomy to strong testimonials
-add_action( 'init', 'clea_ib_add_taxonomy_to_strong_testimonial', 11 );	
+// must be higher than the wpmtst_register_cpt() call, currently 12
+//  - see query monitor hooks section
+add_action( 'init', 'clea_ib_add_taxonomy_to_strong_testimonial', 15 );	
 
 add_action( 'plugins_loaded', 'clea_strong_testimonials_add_on_load_plugin_textdomain' );
 
